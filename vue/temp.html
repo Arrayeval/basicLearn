@@ -7,21 +7,18 @@
   </body>
 </html>
 <script>
-  var obj = {
-    
-  };
-    Object.defineProperty(obj, "evel", {
-        get: function() {
-          console.log("get init");
-        },
-        set: function(val) {
-          document.getElementById("userName").innerText = val;
-        }
-      });
-    document
-      .getElementById("uName")
-      .addEventListener("keyup", function(event) {
-        obj.evel = event.target.value;
-      });
-    
+  var obj = {};
+  Object.defineProperty(obj, "evel", {
+      get: function() {
+        console.log("get init");
+      },
+      set: function(val) {
+        document.getElementById("userName").innerText = val;
+      }
+    });
+  document
+    .getElementById("uName")
+    .addEventListener("keyup", function(event) {
+      obj.evel = event.target.value;
+    });
 </script>
