@@ -15,9 +15,18 @@ function selfVue (data, el, exp) {
   return this;
 }
 
-selfVue.prototype = {
+SelfVue.prototype = {
   proxyKeys: function (key) {
-    let selft = this;
-    
+      var self = this;
+      Object.defineProperty(this, key, {
+          enumerable: false,
+          configurable: true,
+          get: function proxyGetter() {
+              return self.data[key];
+          },
+          set: function proxySetter(newVal) {
+              self.data[key] = newVal;
+          }
+      });
   }
 }
