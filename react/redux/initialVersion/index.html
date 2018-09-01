@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div id='title'></div>
+        <div id='content'></div>
+      </body>
+</html>
+<script src="./redux.js"></script>
+<script>
+function renderApp (appState) {
+  renderTitle(appState.title)
+  renderContent(appState.content)
+}
+
+function renderTitle (title) {
+  const titleDOM = document.getElementById('title')
+  titleDOM.innerHTML = title.text
+  titleDOM.style.color = title.color
+}
+
+function renderContent (content) {
+  const contentDOM = document.getElementById('content')
+  contentDOM.innerHTML = content.text
+  contentDOM.style.color = content.color
+}
+let appState = {
+  title: {
+    text: 'React.js 小书',
+    color: 'red',
+  },
+  content: {
+    text: 'React.js 小书内容',
+    color: 'blue'
+  }
+}
+const store = createStore(appState, stateChanger)
+renderApp(store.getState()) // 首次渲染页面
+
+setTimeout(() => {
+    store.dispatch({ type: 'UPDATE_TITLE_TEXT', text: '《React.js 小书333》' }) // 修改标题文本
+    store.dispatch({ type: 'UPDATE_TITLE_COLOR', color: 'yellow' }) 
+    renderApp(store.getState()) 
+    //store.subscribe(() => renderApp(store.getState()))
+
+}, 3000)
+</script>
