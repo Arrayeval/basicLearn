@@ -21,7 +21,6 @@ const themeReducer = (state, action) => {
     default: 
       return state  
   }
-  console.log(state)
 }
 const store = createStore(themeReducer)
 export default store
